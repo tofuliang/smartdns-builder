@@ -2,8 +2,17 @@ name: Publish Docker image
 on:
   push:
     branches: [main]
-  watch:
-    types: [started]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning' 
+        type: choice
+        options:
+        - info
+        - warning
+        - debug 
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
